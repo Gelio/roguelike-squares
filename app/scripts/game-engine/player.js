@@ -19,12 +19,12 @@ export default class Player extends Creature {
     addExperience(amount) {
         this.experience += amount;
 
-        let expNeeded = this.level*GameConfig.experiencePerLevelMultiplier;
-        if(this.experience >= expNeeded) {
+        let expNeeded = this.level * GameConfig.experiencePerLevelMultiplier;
+        if (this.experience >= expNeeded) {
             this.level++;
             this.experience -= expNeeded;
 
-            super.heal(Math.ceil(this.maxHealth/2));
+            super.heal(Math.ceil(this.maxHealth / 2));
         }
     }
 
