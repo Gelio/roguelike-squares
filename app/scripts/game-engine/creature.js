@@ -29,6 +29,10 @@ export default class Creature {
         return this.health;
     }
 
+    setAttackValue(value) {
+        this.attack = value;
+    }
+
     static isCreature(creature) {
         return creature instanceof Creature;
     }
