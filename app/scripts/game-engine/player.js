@@ -47,4 +47,8 @@ export default class Player extends Creature {
 
         this.gold += amount;
     }
+
+    static isPlayer(player) {
+        return player instanceof Player;
+    }
 }

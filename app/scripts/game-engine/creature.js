@@ -27,11 +27,19 @@ export default class Creature {
     }
 
     heal(amount) {
-        this.health += Math.min(amount, this.maxHealth);
+        amount = Number(amount);
+        if (!amount)
+            throw 'Amount of health to be restored was not a number';
+
+        this.health = Math.min(this.health + amount, this.maxHealth);
         return this.health;
     }
 
     setAttackValue(value) {
+        value = Number(value);
+        if (!value)
+            throw 'New attack value to be set was not a number';
+
         this.attack = value;
     }
 

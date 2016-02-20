@@ -5,5 +5,6 @@ export default {
     EMPTY: Symbol('empty-space'),
     WEAPON: Symbol('weapon'),
     GOLD: Symbol('gold'),
-    TRAPDOOR: Symbol('trapdoor')
+    TRAPDOOR: Symbol('trapdoor'),
+    HEALTH_POTION: Symbol('health-potion')
 }

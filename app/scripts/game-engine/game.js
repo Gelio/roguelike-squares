@@ -26,7 +26,7 @@ export default class Game {
         let prevTile = this.gameMap.getTile(prevPos),
             nextTile = this.gameMap.getTile(nextPos);
 
-        if (!prevTile.content instanceof Player)
+        if (!Player.isPlayer(prevTile.content))
             throw 'Tried to move a non-player tile';
 
         if (!prevTile.content.isAlive())
@@ -50,9 +50,10 @@ export default class Game {
             this.floor++;
             // TODO: Generate new map, insert items, player
         }
-        else if (nextTile.type === TYPE.WEAPON) {
+        else if (nextTile.type === TYPE.WEAPON)
             this.player.setWeapon(nextTile.content);
-        }
+        else if (nextTile.type === TYPE.HEALTH_POTION)
+            this.player.heal(nextTile.content);
 
         if (shouldMove) {
             this.gameMap.clearTile(prevPos);
@@ -61,7 +62,7 @@ export default class Game {
     }
 
     battle(enemy) {
-        if (!enemy instanceof Creature)
+        if (!Creature.isCreature(enemy))
             throw 'Tile was of type CREATURE, but the content was not instance of Creature class';
 
         this.player.attack(enemy);

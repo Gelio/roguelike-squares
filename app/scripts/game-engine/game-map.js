@@ -56,8 +56,11 @@ export default class GameMap {
         // TODO
     }
 
+    insertHealthPotion({x, y, healAmount}) {
+        // TODO
+    }
+
     clearTile({x, y}) {
-        // TODO: set this tile as an empty type and remove content (set to null)
         let tile = this.getTile({x, y});
 
         if (!this.isValidPosition({x, y}))

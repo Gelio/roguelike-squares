@@ -9,5 +9,6 @@ colors.set(TYPE.CREATURE, 'red');
 colors.set(TYPE.WEAPON, 'blue');
 colors.set(TYPE.GOLD, 'gold');
 colors.set(TYPE.TRAPDOOR, 'grey');
+colors.set(TYPE.HEALTH_POTION, 'pink');
 
 export default colors;
