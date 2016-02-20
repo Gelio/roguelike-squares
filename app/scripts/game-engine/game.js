@@ -7,6 +7,8 @@ import MapGenerator from './map-generator';
 import Player from './player';
 
 export default class Game {
+    gameOver = false;   // false - not over, 1 - player won, 2 - player lost
+
     constructor() {
         this.gameMap = new GameMap();
         this.floor = 1;
@@ -55,12 +57,14 @@ export default class Game {
             shouldMove = this.battle(nextTile.content);
 
             if (!this.player.isAlive()) {
-                // TODO: game over
+                // TODO: game over - player lost
+                this.gameOver = 2;
                 return false;
             }
 
             if(this.floor == GameConfig.floorLimit && this.gameMap.enemiesLeft === 0) {
                 // TODO: game ovew - player won
+                this.gameOver = 1;
                 return false;
             }
         }
@@ -104,6 +108,9 @@ export default class Game {
     }
 
     handleMove(direction) {
+        if(this.gameOver)
+            return;
+
         let newPosition = Object.create(this.playerPos);
         if(direction === 0)
             newPosition.x--;

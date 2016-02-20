@@ -6,7 +6,15 @@ export default class StatsBar extends React.Component {
     }
 
     render() {
-        let { player, floor} = this.props;
+        let { player, floor, gameOver } = this.props;
+
+        if(gameOver)
+            return (
+                <div class="game-stats">
+                    <div>YOU {gameOver === 1 ? 'WON' : 'LOST'}!</div>
+                    <button onClick={this.props.newGame} class="btn btn-primary m-b-1">Click here to start a new game.</button>
+                </div>
+            );
 
         return (
             <div class="game-stats">
