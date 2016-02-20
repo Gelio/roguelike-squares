@@ -8,5 +8,11 @@ export default {
     map: {
         width: 50,
         height: 30
+    },
+    playerBaseStats: {
+        health: 100,
+        experience: 0,
+        level: 1,
+        gold: 0
     }
 }

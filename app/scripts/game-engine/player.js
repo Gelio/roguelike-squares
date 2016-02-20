@@ -7,9 +7,10 @@ export default class Player extends Creature {
     level;
     weapon;
 
-    constructor({health, maxHealth, attack, gold, level, weapon}) {
-        super({health, maxHealth, attack});        // TODO: check if it works and if not change to {health: health, maxHealth: maxHealth, attack: attack}
+    constructor({health, gold, level, weapon = GameConfig.startingWeapon, experience}) {
+        super({health});
 
+        this.experience = experience;
         this.gold = gold;
         this.level = level;
         this.setWeapon(weapon);

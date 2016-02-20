@@ -3,7 +3,7 @@ export default class Creature {
     maxHealth;
     attack;
 
-    constructor({ health, maxHealth, attack }) {
+    constructor({ health, maxHealth = health, attack }) {
         this.health = health;
         this.maxHealth = maxHealth;
         this.attack = attack;

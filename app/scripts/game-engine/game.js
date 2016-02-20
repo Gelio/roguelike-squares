@@ -13,7 +13,7 @@ export default class Game {
             x: 0,
             y: 0
         };
-        this.player = new Player(); // TODO: initialize with base stats
+        this.player = new Player(GameConfig.playerBaseStats);
 
 
         this.gameMap.insertPlayer({x: this.playerPos.x, y: this.playerPos.y, player: this.player});
