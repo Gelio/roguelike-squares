@@ -17,6 +17,10 @@ export default class Player extends Creature {
     }
 
     addExperience(amount) {
+        amount = Number(amount);
+        if (!amount)
+            throw 'Amount of experience to be added was not a number';
+
         this.experience += amount;
 
         let expNeeded = this.level * GameConfig.experiencePerLevelMultiplier;
