@@ -23,8 +23,8 @@ export default class Tile {
 
     setType(newType) {
         let found = false;
-        for (let currType of TYPE) {
-            if (currType === newType) {
+        for (let currType in TYPE) {
+            if (TYPE[currType] === newType) {
                 found = true;
                 break;
             }
@@ -38,7 +38,7 @@ export default class Tile {
     }
 
     setContent(newContent) {
-        if(Creature.isCreature(content)) {
+        if(Creature.isCreature(newContent)) {
             if(this.type !== TYPE.CREATURE)
                 throw 'Tried to set content to a creature but the type is wrong';
         }
@@ -47,7 +47,7 @@ export default class Tile {
                 throw 'Tried to set content to a player but the type is wrong';
         }
         else if(newContent === null) {
-            if(this.type !== TYPE.EMPTY || this.type !== TYPE.WALL)
+            if(this.type !== TYPE.EMPTY && this.type !== TYPE.WALL)
                 throw 'Tried to set content to null but the type is wrong';
         }
 
