@@ -3,6 +3,8 @@ import GameConfig from './game-config';
 import Creature from './creature';
 import GameMap from './game-map';
 
+import { randomizeStat } from './helper-functions';
+
 export default class MapGenerator {
     map;
     rooms;
@@ -67,8 +69,8 @@ export default class MapGenerator {
             enemy;
 
         enemy = new Creature({
-            health: floor * GameConfig.enemyHealthFloorMultiplier,
-            attack: floor * GameConfig.enemyAttackValueFloorMultiplier
+            health: randomizeStat(floor * GameConfig.enemyHealthFloorMultiplier),
+            attack: randomizeStat(floor * GameConfig.enemyAttackValueFloorMultiplier)
         });
 
         this.map.insertCreature({
@@ -89,7 +91,7 @@ export default class MapGenerator {
         this.map.insertHealthPotion({
             x: insertPosition.x,
             y: insertPosition.y,
-            healAmount: floor * GameConfig.healthPerPotionFloorMultiplier
+            healAmount: randomizeStat(floor * GameConfig.healthPerPotionFloorMultiplier)
         });
     }
 
@@ -106,6 +108,21 @@ export default class MapGenerator {
 
     addTrapdoor() {
         this.map.insertTrapdoor(this.randomValidEmptyPosition());
+    }
+
+    addGold(floor) {
+        for (let i = 0; i < GameConfig.goldPilesPerFloor; i++)
+            this.makeGold(floor);
+    }
+
+    makeGold(floor) {
+        let insertPosition = this.randomValidEmptyPosition();
+
+        this.map.insertGold({
+            x: insertPosition.x,
+            y: insertPosition.y,
+            amount: randomizeStat(floor * GameConfig.goldPerPileFloorMultiplier)
+        });
     }
 
     randomValidEmptyPosition() {

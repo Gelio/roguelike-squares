@@ -23,7 +23,7 @@ export default {
         maxHeight: 10
     },
     enemiesPerFloor: 10,
-    enemyHealthFloorMultiplier: 5,
+    enemyHealthFloorMultiplier: 10,
     enemyAttackValueFloorMultiplier: 5,
     healthPotionsPerFloor: 3,
     healthPerPotionFloorMultiplier: 10,
@@ -37,5 +37,8 @@ export default {
             attackValue: 15
         }
     ],
-    floorLimit: 4
+    floorLimit: 4,
+    goldPilesPerFloor: 5,
+    goldPerPileFloorMultiplier: 5,
+    randomVariance: 10  // percentage that stats may vary from their base value
 }

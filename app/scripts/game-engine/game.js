@@ -26,6 +26,7 @@ export default class Game {
         mapGenerator.addEnemies(this.floor);
         mapGenerator.addHealthPotions(this.floor);
         mapGenerator.addWeapon(this.floor);
+        mapGenerator.addGold(this.floor);
 
         if(this.floor <= GameConfig.floorLimit)
             mapGenerator.addTrapdoor();
