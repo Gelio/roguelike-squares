@@ -19,8 +19,7 @@ export default class Creature {
 
         if (!enemy.isAlive())
             throw 'Enemy is already dead';
-
-        this.health -= enemy.attack;
+        
         enemy.health -= this.attack;
     }
 
