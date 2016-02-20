@@ -1,4 +1,8 @@
 import GameConfig from './game-config';
+import TYPE from './types';
+
+import Creature from './creature';
+import Player from './player';
 import Tile from './tile';
 
 export default class GameMap {
@@ -12,5 +16,33 @@ export default class GameMap {
             for (let y = 0; y < this.height; y++)
                 this.map[x].push( new Tile({ x, y }) );     // add an empty tile at this.map[x][y]
         }
+    }
+
+    getTile({x, y}) {
+        return this.map[x][y];
+    }
+
+    isValidDestination({x, y}) {
+        let tile = this.getTile({x, y});
+        if(tile.type === TYPE.WALL || x < 0 || x >= this.width || y < 0 || y >= this.height)
+            return false;
+
+        return true;
+    }
+
+    insertCreature({x, y, creature}) {
+        // TODO
+    }
+
+    insertWeapon({x, y, weapon}) {
+        // TODO
+    }
+
+    insertGold({x, y, amount}) {
+
+    }
+
+    insertPlayer({x, y, player}) {
+
     }
 }

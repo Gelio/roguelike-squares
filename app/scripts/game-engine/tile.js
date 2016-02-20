@@ -5,11 +5,13 @@ export default class Tile {
     x;
     y;
     type;
+    content;
 
-    constructor({ x, y, type = TYPE.WALL }) {
+    constructor({ x, y, type = TYPE.WALL, content = NULL }) {
         this.x = x;
         this.y = y;
         this.type = type;
+        this.content = content;
     }
 
     getPosition() {
