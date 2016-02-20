@@ -1,7 +1,7 @@
 export default class Creature {
     health;
     maxHealth;
-    attack;
+    attackValue;
 
     constructor({ health, maxHealth = health, attack }) {
         this.health = health;
@@ -23,7 +23,7 @@ export default class Creature {
         if (!enemy.isAlive())
             throw 'Enemy is already dead';
 
-        enemy.health -= this.attack;
+        enemy.health -= this.attackValue;
     }
 
     heal(amount) {
@@ -40,7 +40,7 @@ export default class Creature {
         if (!value)
             throw 'New attack value to be set was not a number';
 
-        this.attack = value;
+        this.attackValue = value;
     }
 
     static isCreature(creature) {
