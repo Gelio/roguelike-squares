@@ -39,10 +39,14 @@ export default class GameMap {
     }
 
     insertGold({x, y, amount}) {
-
+        // TODO
     }
 
     insertPlayer({x, y, player}) {
+        // TODO
+    }
 
+    clearTile({x, y}) {
+        // TODO: set this tile as an empty type and remove content (set to null)
     }
 }

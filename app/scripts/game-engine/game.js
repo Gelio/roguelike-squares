@@ -13,9 +13,9 @@ export default class Game {
             x: 0,
             y: 0
         };
-        this.player = new Player(); // initialize with base stats
+        this.player = new Player(); // TODO: initialize with base stats
 
-        // add player onto the map
+        // TODO: add player onto the map
     }
 
     movePlayer(prevPos, nextPos) {
@@ -31,22 +31,41 @@ export default class Game {
         if(!this.gameMap.isValidDestination(nextPos))
             return false;
 
-        let shouldMove = false;
+        let shouldMove = true;
         if(nextTile.type === TYPE.CREATURE) {
-            // TODO: Battle
+            shouldMove = this.battle(nextTile.content);
+
+            if(!this.player.isAlive()) {
+                // TODO: game over
+            }
         }
-        else if(nextTile.type === TYPE.GOLD) {
-            // TODO: Pick up gold
-        }
+        else if(nextTile.type === TYPE.GOLD)
+            this.player.addGold(nextTile.content);
         else if(nextTile.type === TYPE.TRAPDOOR) {
             // TODO: Move to the next floor
         }
         else if(nextTile.type === TYPE.WEAPON) {
-            // TODO: Pick up new weapon
+            this.player.setWeapon(nextTile.content);
         }
 
         if(shouldMove) {
-            // TODO
+            // TODO: move to next tile, clear previous tile
+        }
+    }
+
+    battle(enemy) {
+        if(!enemy instanceof Creature)
+            throw 'Tile was of type CREATURE, but the content was not instance of Creature class';
+
+        this.player.attack(enemy);
+
+        if(enemy.isAlive()) {
+            enemy.attack(this.player);
+            return false;
+        }
+        else {
+            // TODO: add player experience
+            return true;
         }
     }
 }
