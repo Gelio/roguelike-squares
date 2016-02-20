@@ -38,7 +38,56 @@ export default class MapGenerator {
         });
 
         this.rooms.push(room);
+        if(this.rooms.length > 1)
+            this.makeTunnel(room, this.rooms[this.rooms.length-1]);
+
         return true;
+    }
+
+    makeTunnel(room1, room2) {
+        // TODO
+        let center1 = MapGenerator.getCenter(room1),
+            center2 = MapGenerator.getCenter(room2);
+
+        if(Math.random()%2 == 0) {
+            // Horizontal, then vertical
+            this.makeHorizontalTunnel(center1.x, center2.x, center1.y);
+            this.makeVerticalTunnel(center2.x, center1.y, center2.y);
+        }
+        else {
+            // Vertical, then horizontal
+            this.makeVerticalTunnel(center1.x, center1.y, center2.y);
+            this.makeHorizontalTunnel(center1.x, center2.x, center2.y);
+        }
+    }
+
+    makeHorizontalTunnel(fromX, toX, y) {
+        if (!this.map.isValidPosition({x: fromX, y}) || !this.map.isValidPosition({x: toX, y}))
+            throw 'Tunnel cannot be created because positions are invalid';
+
+        if (fromX > toX) {
+            let temp = fromX;
+            fromX = toX;
+            toX = temp;
+        }
+
+        for (let x = fromX; x < toX; x++)
+            this.map.clearTile({x, y});
+    }
+
+
+    makeVerticalTunnel(x, fromY, toY) {
+        if(!this.map.isValidPosition({x, y: fromY}) || !this.map.isValidPosition({x, y: toY}))
+            throw 'Tunnel cannot be created because positions are invalid';
+
+        if (fromY > toY) {
+            let temp = fromY;
+            fromY = toY;
+            toY = temp;
+        }
+
+        for (let y = fromY; y < toY; y++)
+            this.map.clearTile({x, y});
     }
 
     static doIntersect(room1, room2) {
