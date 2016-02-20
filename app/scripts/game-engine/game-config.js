@@ -6,8 +6,8 @@ export default {
         attackValue: 5
     },
     map: {
-        width: 50,
-        height: 30
+        width: 80,
+        height: 40
     },
     playerBaseStats: {
         health: 100,
@@ -15,11 +15,13 @@ export default {
         level: 1,
         gold: 0
     },
-    roomsPerFloor: 1,
+    roomsPerFloor: 20,
     roomSize: {
-        minWidth: 3,
+        minWidth: 5,
         maxWidth: 10,
-        minHeight: 3,
+        minHeight: 5,
         maxHeight: 10
-    }
+    },
+    enemiesPerFloor: 5,
+    healthPotionsPerFloor: 2
 }

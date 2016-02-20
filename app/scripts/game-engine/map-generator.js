@@ -1,5 +1,6 @@
 import GameConfig from './game-config';
 
+import Creature from './creature';
 import GameMap from './game-map';
 
 export default class MapGenerator {
@@ -55,17 +56,42 @@ export default class MapGenerator {
             this.makeRoom(this.randomRoomPosition());
     }
 
+    addEnemies(level) {
+        for (let i = 0; i < GameConfig.enemiesPerFloor; i++)
+            this.makeEnemy(level);
+    }
+
+
+    makeEnemy(level) {
+        let insertPosition,
+            enemy;
+
+        do {
+            insertPosition = MapGenerator.randomPosition(this.getRandomRoom())
+        } while(!this.map.getTile(insertPosition).isEmpty());
+
+        enemy = new Creature({
+            health: 5,  // TODO: make these stats dynamic with regard to level
+            attack: 2
+        });
+
+        this.map.insertCreature({
+            x: insertPosition.x,
+            y: insertPosition.y,
+            creature: enemy
+        });
+    }
+
     randomRoomPosition() {
         let newRoom = {
-            x: MapGenerator.randomNumber(GameConfig.map.width),
-            y: MapGenerator.randomNumber(GameConfig.map.height),
-            w: Math.min(GameConfig.map.width-1, GameConfig.roomSize.minWidth + MapGenerator.randomNumber(this.widthDifference)),
-            h: Math.min(GameConfig.map.height-1, GameConfig.roomSize.minHeight + MapGenerator.randomNumber(this.heightDifference))
+            x: 0,
+            y: 0,
+            w: GameConfig.roomSize.minWidth + MapGenerator.randomNumber(this.widthDifference),
+            h: GameConfig.roomSize.minHeight + MapGenerator.randomNumber(this.heightDifference)
         };
 
-        // TODO
-        // 1. Generate width and height
-        // 2. Relative to that generate x and y
+        newRoom.x = MapGenerator.randomNumber(GameConfig.map.width - newRoom.w);
+        newRoom.y = MapGenerator.randomNumber(GameConfig.map.height - newRoom.h);
 
         for(let i = 0; i < this.rooms; i++) {
             if(MapGenerator.doIntersect(this.rooms[i], newRoom))
@@ -120,6 +146,17 @@ export default class MapGenerator {
             this.map.clearTile({x, y});
     }
 
+    generateMap() {
+        this.addRooms();
+        this.addTunnels();
+
+        // Add
+    }
+
+    getRandomRoom() {
+        return this.rooms[MapGenerator.randomNumber(this.rooms.length)];
+    }
+
     static doIntersect(room1, room2) {
         return (room1.x <= (room2.x + room2.w) && (room1.x + room1.w) >= room2.x &&
                 room1.y <= (room2.y + room2.h) && (room1.y + room1.h) >= room2.y);
@@ -134,5 +171,12 @@ export default class MapGenerator {
 
     static randomNumber(max) {
         return Math.floor(Math.random() * max);
+    }
+
+    static randomPosition(room) {
+        return {
+            x: room.x + MapGenerator.randomNumber(room.w),
+            y: room.y + MapGenerator.randomNumber(room.h)
+        };
     }
 }

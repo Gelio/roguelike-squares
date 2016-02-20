@@ -6,7 +6,7 @@ export default class Creature {
     constructor({ health, maxHealth = health, attack }) {
         this.health = health;
         this.maxHealth = maxHealth;
-        this.attack = attack;
+        this.attackValue = attack;
 
         if(this.health > this.maxHealth)
             this.health = this.maxHealth;

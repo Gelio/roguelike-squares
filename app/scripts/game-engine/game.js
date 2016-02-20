@@ -22,9 +22,8 @@ export default class Game {
 
     generateMap() {
         let mapGenerator = new MapGenerator(this.gameMap);
-
-        mapGenerator.addRooms();
-        mapGenerator.addTunnels();
+        mapGenerator.generateMap();
+        mapGenerator.addEnemies();
 
         this.playerPos = MapGenerator.getCenter(mapGenerator.rooms[0]);
     }
@@ -68,6 +67,7 @@ export default class Game {
         if (shouldMove) {
             this.gameMap.clearTile(prevPos);
             this.gameMap.insertPlayer({x: nextX, y: nextY, player: this.player});
+            this.playerPos = nextPos;
         }
     }
 

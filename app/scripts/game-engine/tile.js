@@ -62,4 +62,8 @@ export default class Tile {
         this.setType(TYPE.EMPTY);
         this.setContent(null);
     }
+
+    isEmpty() {
+        return this.type === TYPE.EMPTY;
+    }
 }
