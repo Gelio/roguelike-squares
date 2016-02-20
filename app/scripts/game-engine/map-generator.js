@@ -19,6 +19,9 @@ export default class MapGenerator {
         let { x, y, w, h } = room,
             intersect = false;
 
+        if(!this.map.isValidPosition({x, y}) || !this.map.isValidPosition({x: x+w, y: y+h}))
+            throw 'Room corners are not valid positions on the map';
+
         this.rooms.forEach((existingRoom) => {
             if(MapGenerator.doIntersect(existingRoom, room))
                 intersect = true;

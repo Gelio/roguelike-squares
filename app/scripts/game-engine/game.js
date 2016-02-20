@@ -29,8 +29,6 @@ export default class Game {
             w: 10,
             h: 10
         });
-
-        console.log(this.gameMap);
     }
 
     movePlayer(prevPos, nextPos) {
