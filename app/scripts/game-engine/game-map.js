@@ -59,7 +59,12 @@ export default class GameMap {
         if (!Player.isPlayer(player))
             throw 'Entity to be inserted was not a player';
 
-        // TODO
+        if (!this.isValidDestination({x, y}))
+            throw 'Tried to insert a player at an invalid destination';
+
+        let tile = this.getTile({x, y});
+        tile.content = player;
+        tile.changeType(TYPE.PLAYER);
     }
 
     insertHealthPotion({x, y, healAmount}) {
@@ -67,11 +72,9 @@ export default class GameMap {
     }
 
     clearTile({x, y}) {
-        let tile = this.getTile({x, y});
-
         if (!this.isValidPosition({x, y}))
             throw 'Position to be cleared was invalid';
 
-        tile.clear();
+        this.getTile({x, y}).clear();
     }
 }
