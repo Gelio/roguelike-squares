@@ -41,6 +41,9 @@ export default class GameMap {
     }
 
     insertCreature({x, y, creature}) {
+        if (!Creature.isCreature(creature))
+            throw 'Entity to be inserted was not a creature';
+
         // TODO
     }
 
@@ -53,6 +56,9 @@ export default class GameMap {
     }
 
     insertPlayer({x, y, player}) {
+        if (!Player.isPlayer(player))
+            throw 'Entity to be inserted was not a player';
+
         // TODO
     }
 
