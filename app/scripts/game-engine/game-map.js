@@ -53,17 +53,34 @@ export default class GameMap {
     }
 
     insertWeapon({x, y, weapon}) {
-        // TODO
+        weapon.attackValue = Number(weapon.attackValue);
+
+        if(!weapon.attackValue)
+            throw 'Weapon\'s attack value is not a number';
+
+        if(!weapon.name)
+            throw 'Weapon does not have a name';
+
         if (!this.isValidDestination({x, y}))
             throw 'Tried to insert a weapon at an invalid destination';
 
-
+        let tile = this.getTile({x, y});
+        tile.setType(TYPE.WEAPON);
+        tile.setContent(weapon);
     }
 
     insertGold({x, y, amount}) {
-        // TODO
+        amount = Number(amount);
+
+        if(!amount)
+            throw 'Amount of gold to be inserted is not a number';
+
         if (!this.isValidDestination({x, y}))
             throw 'Tried to insert gold at an invalid destination';
+
+        let tile = this.getTile({x, y});
+        tile.setType(TYPE.GOLD);
+        tile.setContent(amount);
     }
 
     insertPlayer({x, y, player}) {
