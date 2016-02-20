@@ -44,15 +44,26 @@ export default class GameMap {
         if (!Creature.isCreature(creature))
             throw 'Entity to be inserted was not a creature';
 
-        // TODO
+        if (!this.isValidDestination({x, y}))
+            throw 'Tried to insert a creature at an invalid destination';
+
+        let tile = this.getTile({x, y});
+        tile.setType(TYPE.CREATURE);
+        tile.setContent(creature);
     }
 
     insertWeapon({x, y, weapon}) {
         // TODO
+        if (!this.isValidDestination({x, y}))
+            throw 'Tried to insert a weapon at an invalid destination';
+
+
     }
 
     insertGold({x, y, amount}) {
         // TODO
+        if (!this.isValidDestination({x, y}))
+            throw 'Tried to insert gold at an invalid destination';
     }
 
     insertPlayer({x, y, player}) {
@@ -63,12 +74,14 @@ export default class GameMap {
             throw 'Tried to insert a player at an invalid destination';
 
         let tile = this.getTile({x, y});
-        tile.content = player;
-        tile.changeType(TYPE.PLAYER);
+        tile.setType(TYPE.PLAYER);
+        tile.setContent(player);
     }
 
     insertHealthPotion({x, y, healAmount}) {
         // TODO
+        if (!this.isValidDestination({x, y}))
+            throw 'Tried to insert a health potion at an invalid destination';
     }
 
     clearTile({x, y}) {

@@ -1,24 +1,27 @@
 import TYPE from './types';
 import COLOR from './colors';
 
+import Creature from './creature';
+import Player from './player';
+
 export default class Tile {
     x;
     y;
     type;
     content;
 
-    constructor({ x, y, type = TYPE.WALL, content = NULL }) {
+    constructor({ x, y, type = TYPE.WALL, content = null }) {
         this.x = x;
         this.y = y;
-        this.content = content;
-        this.changeType(type);
+        this.setType(type);
+        this.setContent(content);
     }
 
     getPosition() {
         return {x: this.x, y: this.y};
     }
 
-    changeType(newType) {
+    setType(newType) {
         let found = false;
         for (let currType of TYPE) {
             if (currType === newType) {
@@ -27,13 +30,28 @@ export default class Tile {
             }
         }
 
-        if (found) {
+        if (found)
             this.type = newType;
-            return true;
-        }
         else
             throw 'Tile type to be set is invalid (was not found in the TYPE object)';
 
+    }
+
+    setContent(newContent) {
+        if(Creature.isCreature(content)) {
+            if(this.type !== TYPE.CREATURE)
+                throw 'Tried to set content to a creature but the type is wrong';
+        }
+        else if(Player.isPlayer(newContent)) {
+            if(this.type !== TYPE.PLAYER)
+                throw 'Tried to set content to a player but the type is wrong';
+        }
+        else if(newContent === null) {
+            if(this.type !== TYPE.EMPTY || this.type !== TYPE.WALL)
+                throw 'Tried to set content to null but the type is wrong';
+        }
+
+        this.content = newContent;
     }
 
     get color() {
@@ -41,7 +59,7 @@ export default class Tile {
     }
 
     clear() {
-        this.content = null;
-        return this.changeType(TYPE.EMPTY);
+        this.setType(TYPE.EMPTY);
+        this.setContent(null);
     }
 }
