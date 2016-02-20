@@ -13,6 +13,7 @@ export default class Player extends Creature {
         this.experience = experience;
         this.gold = gold;
         this.level = level;
+        this.experienceNeeded = this.level * GameConfig.experiencePerLevelMultiplier;
         this.setWeapon(weapon);
     }
 
@@ -23,10 +24,11 @@ export default class Player extends Creature {
 
         this.experience += amount;
 
-        let expNeeded = this.level * GameConfig.experiencePerLevelMultiplier;
+        let expNeeded = this.experienceNeeded;
         if (this.experience >= expNeeded) {
             this.level++;
             this.experience -= expNeeded;
+            this.experience += GameConfig.experiencePerLevelMultiplier;
 
             super.heal(Math.ceil(this.maxHealth / 2));
         }

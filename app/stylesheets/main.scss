@@ -13,3 +13,11 @@
     padding-bottom: 100%;
   }
 }
+
+.game-stats {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
