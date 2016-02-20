@@ -21,8 +21,10 @@ export default class Tile {
     changeType(newType) {
         let found = false;
         for (let currType of TYPE) {
-            if (currType === newType)
+            if (currType === newType) {
                 found = true;
+                break;
+            }
         }
 
         if (found) {
