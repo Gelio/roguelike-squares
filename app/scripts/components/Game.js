@@ -13,7 +13,7 @@ export default class Game extends React.Component {
 
     render() {
         return (
-            <Map gameMap={this.game.map} />
+            <Map gameMap={this.game.gameMap} />
         );
     }
 }

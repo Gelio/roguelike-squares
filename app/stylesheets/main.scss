@@ -1,0 +1,15 @@
+.game-map-row {
+  width: 100%;
+  clear: both;
+}
+
+.game-map-tile {
+  width: calc(100%/50);
+  float: left;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+}
