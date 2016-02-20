@@ -104,6 +104,10 @@ export default class MapGenerator {
         });
     }
 
+    addTrapdoor() {
+        this.map.insertTrapdoor(this.randomValidEmptyPosition());
+    }
+
     randomValidEmptyPosition() {
         let insertPosition;
 

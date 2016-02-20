@@ -47,7 +47,7 @@ export default class Tile {
                 throw 'Tried to set content to a creature but the type is wrong';
         }
         else if(newContent === null) {
-            if(this.type !== TYPE.EMPTY && this.type !== TYPE.WALL)
+            if(this.type !== TYPE.EMPTY && this.type !== TYPE.WALL && this.type !== TYPE.TRAPDOOR)
                 throw 'Tried to set content to null but the type is wrong';
         }
 

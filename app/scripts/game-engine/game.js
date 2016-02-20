@@ -27,6 +27,9 @@ export default class Game {
         mapGenerator.addHealthPotions(this.floor);
         mapGenerator.addWeapon(this.floor);
 
+        if(this.floor <= GameConfig.floorLimit)
+            mapGenerator.addTrapdoor();
+
         this.playerPos = MapGenerator.getCenter(mapGenerator.rooms[0]);
     }
 

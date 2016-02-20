@@ -33,5 +33,6 @@ export default {
             name: 'Sword',
             attackValue: 15
         }
-    ]
+    ],
+    floorLimit: 4
 }

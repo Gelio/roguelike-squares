@@ -108,6 +108,15 @@ export default class GameMap {
         tile.setContent(healAmount);
     }
 
+    insertTrapdoor(pos) {
+        if (!this.isValidDestination(pos))
+            throw 'Tried to insert a trapdoor at an invalid destination';
+
+        let tile = this.getTile(pos);
+        tile.setType(TYPE.TRAPDOOR);
+        tile.setContent(null);
+    }
+
     clearTile({x, y}) {
         if (!this.isValidPosition({x, y}))
             throw 'Position to be cleared was invalid';
