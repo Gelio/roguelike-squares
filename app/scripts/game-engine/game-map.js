@@ -90,4 +90,10 @@ export default class GameMap {
 
         this.getTile({x, y}).clear();
     }
+
+    emptyArea(area) {
+        for (let x = area.x; x < area.x + area.w; x++)
+            for (let y = area.y; y < area.y + area.h; y++)
+                this.clearTile({x, y});
+    }
 }

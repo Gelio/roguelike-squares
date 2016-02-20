@@ -3,6 +3,7 @@ import TYPE from './types';
 
 import Creature from './creature';
 import GameMap from './game-map';
+import MapGenerator from './map-generator';
 import Player from './player';
 
 export default class Game {
@@ -10,13 +11,26 @@ export default class Game {
         this.gameMap = new GameMap();
         this.floor = 1;
         this.playerPos = {
-            x: 0,
-            y: 0
+            x: 1,
+            y: 1
         };
         this.player = new Player(GameConfig.playerBaseStats);
 
-
+        this.generateMap();
         this.gameMap.insertPlayer({x: this.playerPos.x, y: this.playerPos.y, player: this.player});
+    }
+
+    generateMap() {
+        let mapGenerator = new MapGenerator(this.gameMap);
+
+        mapGenerator.makeRoom({
+            x: 0,
+            y: 0,
+            w: 10,
+            h: 10
+        });
+
+        console.log(this.gameMap);
     }
 
     movePlayer(prevPos, nextPos) {

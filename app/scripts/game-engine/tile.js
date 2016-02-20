@@ -38,13 +38,13 @@ export default class Tile {
     }
 
     setContent(newContent) {
-        if(Creature.isCreature(newContent)) {
-            if(this.type !== TYPE.CREATURE)
-                throw 'Tried to set content to a creature but the type is wrong';
-        }
-        else if(Player.isPlayer(newContent)) {
+        if(Player.isPlayer(newContent)) {
             if(this.type !== TYPE.PLAYER)
                 throw 'Tried to set content to a player but the type is wrong';
+        }
+        else if(Creature.isCreature(newContent)) {
+            if(this.type !== TYPE.CREATURE)
+                throw 'Tried to set content to a creature but the type is wrong';
         }
         else if(newContent === null) {
             if(this.type !== TYPE.EMPTY && this.type !== TYPE.WALL)
