@@ -48,5 +48,7 @@ export default {
     floorLimit: 4,
     goldPilesPerFloor: 5,
     goldPerPileFloorMultiplier: 5,
-    randomVariance: 10  // percentage that stats may vary from their base value
+    randomVariance: 10,  // percentage that stats may vary from their base value
+    renderRadius: 8,
+    fogColor: '#160165'
 }

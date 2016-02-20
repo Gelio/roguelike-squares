@@ -3,6 +3,8 @@ import React from 'react';
 import GameConfig from '../game-engine/game-config';
 import Tile from './tile';
 
+import { getDistance } from '../game-engine/helper-functions';
+
 export default class Map extends React.Component {
     constructor() {
         super();
@@ -17,7 +19,7 @@ export default class Map extends React.Component {
             let displayTiles = [];
             for(let x = 0; x < map.width; x++) {
                 displayTiles.push(
-                    <Tile x={x} y={y} key={x} color={map.getTile({x, y}).color} width={tileWidth} />
+                    <Tile x={x} y={y} key={x} color={this.checkColor({x, y})} width={tileWidth} />
                 );
             }
             displayRows.push(
@@ -28,6 +30,15 @@ export default class Map extends React.Component {
         }
 
         return displayRows;
+    }
+
+    checkColor(position) {
+        let color = this.props.gameMap.getTile(position).color;
+
+        if(this.props.fogActive && getDistance(this.props.playerPosition, position) > GameConfig.renderRadius)
+            color = GameConfig.fogColor;
+
+        return color;
     }
 
     handleKeyDown(e) {
