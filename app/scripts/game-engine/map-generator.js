@@ -191,7 +191,7 @@ export default class MapGenerator {
         return this.rooms[MapGenerator.randomNumber(this.rooms.length)];
     }
 
-    static doIntersect(room1, room2) {
+    static doIntersect(room1, room2) {  // TODO: improve this logic
         return (room1.x <= (room2.x + room2.w) && (room1.x + room1.w) >= room2.x &&
                 room1.y <= (room2.y + room2.h) && (room1.y + room1.h) >= room2.y);
     }
