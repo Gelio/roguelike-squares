@@ -7,6 +7,9 @@ export default class Creature {
         this.health = health;
         this.maxHealth = maxHealth;
         this.attack = attack;
+
+        if(this.health > this.maxHealth)
+            this.health = this.maxHealth;
     }
 
     isAlive() {
