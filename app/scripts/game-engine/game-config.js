@@ -33,8 +33,16 @@ export default {
             attackValue: 10
         },
         {
-            name: 'Sword',
+            name: 'Rapier',
             attackValue: 15
+        },
+        {
+            name: 'Sword',
+            attackValue: 20
+        },
+        {
+            name: 'Fire Sword',
+            attackValue: 25
         }
     ],
     floorLimit: 4,

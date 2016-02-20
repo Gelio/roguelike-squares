@@ -28,7 +28,7 @@ export default class Game {
         mapGenerator.addWeapon(this.floor);
         mapGenerator.addGold(this.floor);
 
-        if(this.floor <= GameConfig.floorLimit)
+        if(this.floor < GameConfig.floorLimit)
             mapGenerator.addTrapdoor();
 
         this.playerPos = MapGenerator.getCenter(mapGenerator.rooms[0]);
@@ -63,7 +63,11 @@ export default class Game {
             this.player.addGold(nextTile.content);
         else if (nextTile.type === TYPE.TRAPDOOR) {
             this.floor++;
-            // TODO: Generate new map, insert items, player
+            this.gameMap = new GameMap();
+
+            this.generateMap();
+            this.gameMap.insertPlayer({x: this.playerPos.x, y: this.playerPos.y, player: this.player});
+            shouldMove = false;
         }
         else if (nextTile.type === TYPE.WEAPON)
             this.player.setWeapon(nextTile.content);
