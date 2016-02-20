@@ -10,8 +10,8 @@ export default class Tile {
     constructor({ x, y, type = TYPE.WALL, content = NULL }) {
         this.x = x;
         this.y = y;
-        this.type = type;
         this.content = content;
+        this.changeType(type);
     }
 
     getPosition() {
@@ -30,11 +30,16 @@ export default class Tile {
             return true;
         }
         else
-            return false;
+            throw 'Tile type to be set is invalid (was not found in the TYPE object)';
 
     }
 
     get color() {
         return COLOR.get(this.type);
+    }
+
+    clear() {
+        this.content = null;
+        return this.changeType(TYPE.EMPTY);
     }
 }

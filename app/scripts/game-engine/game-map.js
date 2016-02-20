@@ -66,7 +66,6 @@ export default class GameMap {
         if (!this.isValidPosition({x, y}))
             throw 'Position to be cleared was invalid';
 
-        tile.content = null;
-        tile.type = TYPE.EMPTY;
+        tile.clear();
     }
 }
