@@ -36,6 +36,7 @@ export default class Map extends React.Component {
         if(keyCode >= 37 && keyCode <= 40) {
             this.props.handleMove(keyCode - 37);
             this.props.forceUpdate();
+            e.preventDefault();
         }
     }
 
