@@ -30,9 +30,9 @@ export default class Player extends Creature {
     setWeapon(weapon) {
         weapon.attackValue = Number(weapon.attackValue);
 
-        if(!weapon.attackValue)
+        if (!weapon.attackValue)
             throw 'Weapon\'s attack value was not a number';
-        if(!weapon.name)
+        if (!weapon.name)
             throw 'Weapon did not have a name';
 
         this.weapon = weapon;
@@ -41,7 +41,7 @@ export default class Player extends Creature {
 
     addGold(amount) {
         amount = Number(amount);
-        if(!amount)
+        if (!amount)
             throw 'Amount of gold to add was not a number';
 
         this.gold += amount;

@@ -1,5 +1,6 @@
 export default {
-    experiencePerLevelMultiplier: 100,
+    experiencePerLevelMultiplier: 100,      // multiplier of how much experience player needs to level up
+    experiencePerFloorMultiplier: 10,       // multiplier of how much experience player gets relative to the floor number
     startingWeapon: {
         name: 'Fist',
         attackValue: 5
