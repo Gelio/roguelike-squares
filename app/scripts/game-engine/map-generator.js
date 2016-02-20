@@ -163,7 +163,7 @@ export default class MapGenerator {
             toX = temp;
         }
 
-        for (let x = fromX; x < toX; x++)
+        for (let x = fromX; x <= toX; x++)
             this.map.clearTile({x, y});
     }
 
@@ -178,7 +178,7 @@ export default class MapGenerator {
             toY = temp;
         }
 
-        for (let y = fromY; y < toY; y++)
+        for (let y = fromY; y <= toY; y++)
             this.map.clearTile({x, y});
     }
 
