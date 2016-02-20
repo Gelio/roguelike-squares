@@ -3,8 +3,7 @@ export default class Creature {
     maxHealth;
     attack;
 
-    constructor(properties) {
-        let { health, maxHealth, attack } = properties;
+    constructor({ health, maxHealth, attack }) {
         this.health = health;
         this.maxHealth = maxHealth;
         this.attack = attack;

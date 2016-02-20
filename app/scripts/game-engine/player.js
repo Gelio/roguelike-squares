@@ -7,9 +7,8 @@ export default class Player extends Creature {
     level;
     weapon;
 
-    constructor(properties) {
-        let { health, maxHealth, attack, gold, level, weapon } = properties;
-        super(properties);        // TODO: check if it works and if not change to {health: health, maxHealth: maxHealth, attack: attack}
+    constructor({health, maxHealth, attack, gold, level, weapon}) {
+        super({health, maxHealth, attack});        // TODO: check if it works and if not change to {health: health, maxHealth: maxHealth, attack: attack}
 
         this.gold = gold;
         this.level = level;
