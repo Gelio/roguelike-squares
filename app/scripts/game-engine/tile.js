@@ -20,12 +20,12 @@ export default class Tile {
 
     changeType(newType) {
         let found = false;
-        for(let currType of TYPE) {
-            if(currType === newType)
+        for (let currType of TYPE) {
+            if (currType === newType)
                 found = true;
         }
 
-        if(found) {
+        if (found) {
             this.type = newType;
             return true;
         }
