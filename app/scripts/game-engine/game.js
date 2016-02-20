@@ -58,6 +58,11 @@ export default class Game {
                 // TODO: game over
                 return false;
             }
+
+            if(this.floor == GameConfig.floorLimit && this.gameMap.enemiesLeft === 0) {
+                // TODO: game ovew - player won
+                return false;
+            }
         }
         else if (nextTile.type === TYPE.GOLD)
             this.player.addGold(nextTile.content);
@@ -93,6 +98,7 @@ export default class Game {
         }
         else {
             this.player.addExperience(this.floor * GameConfig.experiencePerFloorMultiplier);
+            this.gameMap.enemiesLeft--;
             return true;
         }
     }

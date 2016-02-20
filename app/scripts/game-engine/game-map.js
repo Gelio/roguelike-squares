@@ -9,6 +9,7 @@ export default class GameMap {
     width = GameConfig.map.width;
     height = GameConfig.map.height;
     map = [];
+    enemiesLeft = 0;
 
     constructor() {
         for (let x = 0; x < this.width; x++) {
@@ -50,6 +51,8 @@ export default class GameMap {
         let tile = this.getTile({x, y});
         tile.setType(TYPE.CREATURE);
         tile.setContent(creature);
+
+        this.enemiesLeft++;
     }
 
     insertWeapon({x, y, weapon}) {
