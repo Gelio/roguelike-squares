@@ -22,8 +22,11 @@ export default {
         minHeight: 5,
         maxHeight: 10
     },
-    enemiesPerFloor: 5,
-    healthPotionsPerFloor: 2,
+    enemiesPerFloor: 10,
+    enemyHealthFloorMultiplier: 5,
+    enemyAttackValueFloorMultiplier: 5,
+    healthPotionsPerFloor: 3,
+    healthPerPotionFloorMultiplier: 10,
     weapons: [
         {
             name: 'Dagger',

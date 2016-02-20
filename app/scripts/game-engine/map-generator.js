@@ -67,8 +67,8 @@ export default class MapGenerator {
             enemy;
 
         enemy = new Creature({
-            health: 5,  // TODO: make these stats dynamic with regard to floor
-            attack: 2
+            health: floor * GameConfig.enemyHealthFloorMultiplier,
+            attack: floor * GameConfig.enemyAttackValueFloorMultiplier
         });
 
         this.map.insertCreature({
@@ -89,7 +89,7 @@ export default class MapGenerator {
         this.map.insertHealthPotion({
             x: insertPosition.x,
             y: insertPosition.y,
-            healAmount: floor       // TODO: make these stats dynamic with regard to floor
+            healAmount: floor * GameConfig.healthPerPotionFloorMultiplier
         });
     }
 
