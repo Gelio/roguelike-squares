@@ -26,8 +26,11 @@ export default class Game {
         let prevTile = this.gameMap.getTile(prevPos),
             nextTile = this.gameMap.getTile(nextPos);
 
-        if (!prevTile.content instanceof Creature)
-            throw 'Tried to move a non-creature tile';
+        if (!prevTile.content instanceof Player)
+            throw 'Tried to move a non-player tile';
+
+        if (!prevTile.content.isAlive())
+            throw 'Tried to move a dead player';
 
         if (!this.gameMap.isValidDestination(nextPos))
             return false;
@@ -38,12 +41,14 @@ export default class Game {
 
             if (!this.player.isAlive()) {
                 // TODO: game over
+                return false;
             }
         }
         else if (nextTile.type === TYPE.GOLD)
             this.player.addGold(nextTile.content);
         else if (nextTile.type === TYPE.TRAPDOOR) {
-            // TODO: Move to the next floor
+            this.floor++;
+            // TODO: Generate new map, insert items, player
         }
         else if (nextTile.type === TYPE.WEAPON) {
             this.player.setWeapon(nextTile.content);
