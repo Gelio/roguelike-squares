@@ -79,9 +79,16 @@ export default class GameMap {
     }
 
     insertHealthPotion({x, y, healAmount}) {
-        // TODO
+        healAmount = Number(healAmount);
+        if(!healAmount)
+            throw 'Heal amount is not a number';
+
         if (!this.isValidDestination({x, y}))
             throw 'Tried to insert a health potion at an invalid destination';
+
+        let tile = this.getTile({x, y});
+        tile.setType(TYPE.HEALTH_POTION);
+        tile.setContent(healAmount);
     }
 
     clearTile({x, y}) {
