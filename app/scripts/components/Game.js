@@ -13,7 +13,7 @@ export default class Game extends React.Component {
 
     render() {
         return (
-            <Map gameMap={this.game.gameMap} />
+            <Map gameMap={this.game.gameMap} handleMove={this.game.handleMove.bind(this.game)} />
         );
     }
 }

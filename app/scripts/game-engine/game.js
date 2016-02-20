@@ -91,4 +91,27 @@ export default class Game {
             return true;
         }
     }
+
+    handleMove(direction) {
+        let newPosition = this.playerPos;
+        if(direction === 0) {
+            // Left arrow
+            newPosition.x--;
+        }
+        else if(direction === 1) {
+            // Up arrow
+            newPosition.y--;
+        }
+        else if(direction === 2) {
+            // Right arrow
+            newPosition.x++;
+        }
+        else if(direction === 3) {
+            // Down arrow
+            newPosition.y++;
+        }
+
+        if(this.gameMap.isValidDestination(newPosition))
+            this.movePlayer(this.playerPos, newPosition);
+    }
 }

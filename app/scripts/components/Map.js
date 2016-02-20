@@ -30,9 +30,19 @@ export default class Map extends React.Component {
         return displayRows;
     }
 
+    handleKeyDown(e) {
+        console.log(e);
+        let keyCode = e.which || e.keyCode;
+
+        if(keyCode >= 37 && keyCode <= 40) {
+            this.props.handleMove(keyCode - 37);
+            this.forceUpdate();
+        }
+    }
+
     render() {
         return (
-            <div>
+            <div onKeyDown={this.handleKeyDown.bind(this)} tabIndex="0">
                 {this.getDisplayRows()}
             </div>
         );
