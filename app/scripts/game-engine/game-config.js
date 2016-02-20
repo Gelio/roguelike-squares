@@ -14,5 +14,12 @@ export default {
         experience: 0,
         level: 1,
         gold: 0
+    },
+    roomsPerFloor: 1,
+    roomSize: {
+        minWidth: 3,
+        maxWidth: 10,
+        minHeight: 3,
+        maxHeight: 10
     }
 }

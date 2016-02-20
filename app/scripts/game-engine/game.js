@@ -23,12 +23,10 @@ export default class Game {
     generateMap() {
         let mapGenerator = new MapGenerator(this.gameMap);
 
-        mapGenerator.makeRoom({
-            x: 0,
-            y: 0,
-            w: 10,
-            h: 10
-        });
+        mapGenerator.addRooms();
+        mapGenerator.addTunnels();
+
+        this.playerPos = MapGenerator.getCenter(mapGenerator.rooms[0]);
     }
 
     movePlayer(prevPos, nextPos) {

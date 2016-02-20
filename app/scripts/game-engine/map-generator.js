@@ -13,6 +13,8 @@ export default class MapGenerator {
 
         this.map = map;
         this.rooms = [];
+        this.widthDifference = GameConfig.roomSize.maxWidth - GameConfig.roomSize.minWidth;
+        this.heightDifference = GameConfig.roomSize.maxHeight - GameConfig.roomSize.minHeight;
     }
 
     makeRoom(room) {
@@ -38,18 +40,46 @@ export default class MapGenerator {
         });
 
         this.rooms.push(room);
-        if(this.rooms.length > 1)
-            this.makeTunnel(room, this.rooms[this.rooms.length-1]);
-
         return true;
     }
 
-    makeTunnel(room1, room2) {
+    addTunnels() {
+        this.rooms.reduce((previous, current) => {
+            this.makeTunnel(previous, current);
+            return current;
+        });
+    }
+
+    addRooms() {
+        for(let i = 0; i < GameConfig.roomsPerFloor; i++)
+            this.makeRoom(this.randomRoomPosition());
+    }
+
+    randomRoomPosition() {
+        let newRoom = {
+            x: MapGenerator.randomNumber(GameConfig.map.width),
+            y: MapGenerator.randomNumber(GameConfig.map.height),
+            w: Math.min(GameConfig.map.width-1, GameConfig.roomSize.minWidth + MapGenerator.randomNumber(this.widthDifference)),
+            h: Math.min(GameConfig.map.height-1, GameConfig.roomSize.minHeight + MapGenerator.randomNumber(this.heightDifference))
+        };
+
         // TODO
+        // 1. Generate width and height
+        // 2. Relative to that generate x and y
+
+        for(let i = 0; i < this.rooms; i++) {
+            if(MapGenerator.doIntersect(this.rooms[i], newRoom))
+                return this.randomRoomPosition();
+        }
+
+        return newRoom;
+    }
+
+    makeTunnel(room1, room2) {
         let center1 = MapGenerator.getCenter(room1),
             center2 = MapGenerator.getCenter(room2);
 
-        if(Math.random()%2 == 0) {
+        if(Math.floor(Math.random()*2) == 0) {
             // Horizontal, then vertical
             this.makeHorizontalTunnel(center1.x, center2.x, center1.y);
             this.makeVerticalTunnel(center2.x, center1.y, center2.y);
@@ -100,5 +130,9 @@ export default class MapGenerator {
             x: Math.ceil(x + (w / 2)),
             y: Math.ceil(y + (h / 2))
         }
+    }
+
+    static randomNumber(max) {
+        return Math.floor(Math.random() * max);
     }
 }
