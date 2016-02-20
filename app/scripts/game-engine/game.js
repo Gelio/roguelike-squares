@@ -93,23 +93,15 @@ export default class Game {
     }
 
     handleMove(direction) {
-        let newPosition = this.playerPos;
-        if(direction === 0) {
-            // Left arrow
+        let newPosition = Object.create(this.playerPos);
+        if(direction === 0)
             newPosition.x--;
-        }
-        else if(direction === 1) {
-            // Up arrow
+        else if(direction === 1)
             newPosition.y--;
-        }
-        else if(direction === 2) {
-            // Right arrow
+        else if(direction === 2)
             newPosition.x++;
-        }
-        else if(direction === 3) {
-            // Down arrow
+        else if(direction === 3)
             newPosition.y++;
-        }
 
         if(this.gameMap.isValidDestination(newPosition))
             this.movePlayer(this.playerPos, newPosition);

@@ -31,7 +31,6 @@ export default class Map extends React.Component {
     }
 
     handleKeyDown(e) {
-        console.log(e);
         let keyCode = e.which || e.keyCode;
 
         if(keyCode >= 37 && keyCode <= 40) {
