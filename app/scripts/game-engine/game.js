@@ -25,6 +25,7 @@ export default class Game {
         mapGenerator.generateMap();
         mapGenerator.addEnemies(this.floor);
         mapGenerator.addHealthPotions(this.floor);
+        mapGenerator.addWeapon(this.floor);
 
         this.playerPos = MapGenerator.getCenter(mapGenerator.rooms[0]);
     }

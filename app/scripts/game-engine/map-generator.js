@@ -63,12 +63,8 @@ export default class MapGenerator {
 
 
     makeEnemy(floor) {
-        let insertPosition,
+        let insertPosition = this.randomValidEmptyPosition(),
             enemy;
-
-        do {
-            insertPosition = MapGenerator.randomPosition(this.getRandomRoom())
-        } while(!this.map.getTile(insertPosition).isEmpty());
 
         enemy = new Creature({
             health: 5,  // TODO: make these stats dynamic with regard to floor
@@ -88,17 +84,34 @@ export default class MapGenerator {
     }
 
     makeHealthPotion(floor) {
-        let insertPosition;
-
-        do {
-            insertPosition = MapGenerator.randomPosition(this.getRandomRoom())
-        } while(!this.map.getTile(insertPosition).isEmpty());
+        let insertPosition = this.randomValidEmptyPosition();
 
         this.map.insertHealthPotion({
             x: insertPosition.x,
             y: insertPosition.y,
             healAmount: floor       // TODO: make these stats dynamic with regard to floor
         });
+    }
+
+    addWeapon(floor) {
+        let weapon = GameConfig.weapons[floor-1],
+            insertPosition = this.randomValidEmptyPosition();
+
+        this.map.insertWeapon({
+            x: insertPosition.x,
+            y: insertPosition.y,
+            weapon: weapon
+        });
+    }
+
+    randomValidEmptyPosition() {
+        let insertPosition;
+
+        do {
+            insertPosition = MapGenerator.randomPosition(this.getRandomRoom())
+        } while(!this.map.getTile(insertPosition).isEmpty());
+
+        return insertPosition;
     }
 
     randomRoomPosition() {
@@ -168,8 +181,6 @@ export default class MapGenerator {
     generateMap() {
         this.addRooms();
         this.addTunnels();
-
-        // Add
     }
 
     getRandomRoom() {

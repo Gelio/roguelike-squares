@@ -23,5 +23,15 @@ export default {
         maxHeight: 10
     },
     enemiesPerFloor: 5,
-    healthPotionsPerFloor: 2
+    healthPotionsPerFloor: 2,
+    weapons: [
+        {
+            name: 'Dagger',
+            attackValue: 10
+        },
+        {
+            name: 'Sword',
+            attackValue: 15
+        }
+    ]
 }
