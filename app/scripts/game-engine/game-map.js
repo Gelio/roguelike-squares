@@ -1,4 +1,5 @@
 import GameConfig from './game-config';
+import Tile from './tile';
 
 export default class GameMap {
     width = GameConfig.map.width;
@@ -9,7 +10,7 @@ export default class GameMap {
         for (let x = 0; x < this.width; x++) {
             this.map.push([]);      // add new array at this.map[x]
             for (let y = 0; y < this.height; y++)
-                this.map[x].push(null);     // add an empty object at this.map[x][y]
+                this.map[x].push( new Tile({ x, y }) );     // add an empty object at this.map[x][y]
         }
     }
 }
