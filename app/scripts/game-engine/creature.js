@@ -4,9 +4,10 @@ export default class Creature {
     attack;
 
     constructor(properties) {
-        this.health = properties.health;
-        this.maxHealth = properties.maxHealth;
-        this.attack = properties.attack;
+        let { health, maxHealth, attack } = properties;
+        this.health = health;
+        this.maxHealth = maxHealth;
+        this.attack = attack;
     }
 
     isAlive() {
@@ -19,7 +20,7 @@ export default class Creature {
 
         if (!enemy.isAlive())
             throw 'Enemy is already dead';
-        
+
         enemy.health -= this.attack;
     }
 
