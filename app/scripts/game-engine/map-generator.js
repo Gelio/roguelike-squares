@@ -56,13 +56,13 @@ export default class MapGenerator {
             this.makeRoom(this.randomRoomPosition());
     }
 
-    addEnemies(level) {
+    addEnemies(floor) {
         for (let i = 0; i < GameConfig.enemiesPerFloor; i++)
-            this.makeEnemy(level);
+            this.makeEnemy(floor);
     }
 
 
-    makeEnemy(level) {
+    makeEnemy(floor) {
         let insertPosition,
             enemy;
 
@@ -71,7 +71,7 @@ export default class MapGenerator {
         } while(!this.map.getTile(insertPosition).isEmpty());
 
         enemy = new Creature({
-            health: 5,  // TODO: make these stats dynamic with regard to level
+            health: 5,  // TODO: make these stats dynamic with regard to floor
             attack: 2
         });
 
@@ -79,6 +79,25 @@ export default class MapGenerator {
             x: insertPosition.x,
             y: insertPosition.y,
             creature: enemy
+        });
+    }
+
+    addHealthPotions(floor) {
+        for (let i = 0; i < GameConfig.healthPotionsPerFloor; i++)
+            this.makeHealthPotion(floor);
+    }
+
+    makeHealthPotion(floor) {
+        let insertPosition;
+
+        do {
+            insertPosition = MapGenerator.randomPosition(this.getRandomRoom())
+        } while(!this.map.getTile(insertPosition).isEmpty());
+
+        this.map.insertHealthPotion({
+            x: insertPosition.x,
+            y: insertPosition.y,
+            healAmount: floor       // TODO: make these stats dynamic with regard to floor
         });
     }
 

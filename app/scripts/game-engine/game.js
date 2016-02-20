@@ -23,7 +23,8 @@ export default class Game {
     generateMap() {
         let mapGenerator = new MapGenerator(this.gameMap);
         mapGenerator.generateMap();
-        mapGenerator.addEnemies();
+        mapGenerator.addEnemies(this.floor);
+        mapGenerator.addHealthPotions(this.floor);
 
         this.playerPos = MapGenerator.getCenter(mapGenerator.rooms[0]);
     }
