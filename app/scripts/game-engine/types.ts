@@ -1,10 +1,12 @@
-export default {
-    WALL: Symbol('wall'),
-    PLAYER: Symbol('player'),
-    CREATURE: Symbol('creature'),
-    EMPTY: Symbol('empty-space'),
-    WEAPON: Symbol('weapon'),
-    GOLD: Symbol('gold'),
-    TRAPDOOR: Symbol('trapdoor'),
-    HEALTH_POTION: Symbol('health-potion')
+enum TYPE {
+    WALL,
+    PLAYER,
+    CREATURE,
+    EMPTY,
+    WEAPON,
+    GOLD,
+    TRAPDOOR,
+    HEALTH_POTION
 }
+
+export default TYPE;

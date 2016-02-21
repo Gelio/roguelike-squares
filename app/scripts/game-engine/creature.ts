@@ -1,4 +1,5 @@
 /// <reference path="interfaces.ts" />
+import { CreatureClass, CreatureParameters } from './interfaces';
 
 export default class Creature implements CreatureClass {
     health: number;

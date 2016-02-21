@@ -2,6 +2,7 @@
 
 import GameConfig from './game-config';
 import Creature from './creature';
+import { PlayerParameters, PlayerClass, Weapon } from "./interfaces";
 
 export default class Player extends Creature implements PlayerClass {
     gold: number;
