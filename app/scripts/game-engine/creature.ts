@@ -1,9 +1,14 @@
-export default class Creature {
-    health;
-    maxHealth;
-    attackValue;
+/// <reference path="interfaces.ts" />
 
-    constructor({ health, maxHealth = health, attack }) {
+export default class Creature {
+    health: number;
+    maxHealth: number;
+    attackValue: number;
+
+    constructor({ health, maxHealth, attack }: CreatureInterface) {
+        if(!maxHealth)
+            maxHealth = health;
+
         this.health = health;
         this.maxHealth = maxHealth;
         this.attackValue = attack;

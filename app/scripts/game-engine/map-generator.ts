@@ -13,9 +13,6 @@ export default class MapGenerator {
 
 
     constructor(map: GameMap) {
-        if(!map instanceof GameMap)
-            throw 'Map passed to a map generator was not an instance of GameMap class';
-
         this.map = map;
         this.rooms = [];
         this.widthDifference = GameConfig.roomSize.maxWidth - GameConfig.roomSize.minWidth;
