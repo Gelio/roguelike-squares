@@ -7,7 +7,11 @@ import MapGenerator from './map-generator';
 import Player from './player';
 
 export default class Game {
-    gameOver = false;   // false - not over, 1 - player won, 2 - player lost
+    gameOver: number = 0;   // false - not over, 1 - player won, 2 - player
+    gameMap;
+    floor: number;
+    playerPos;
+    player: Player;
 
     constructor() {
         this.gameMap = new GameMap();

@@ -2,10 +2,11 @@ import GameConfig from './game-config';
 import Creature from './creature';
 
 export default class Player extends Creature {
-    gold;
-    experience;
-    level;
+    gold: number;
+    experience: number;
+    level: number;
     weapon;
+    experienceNeeded: number;
 
     constructor({health, gold, level, weapon = GameConfig.startingWeapon, experience}) {
         super({health});

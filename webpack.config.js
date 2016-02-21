@@ -16,7 +16,7 @@ var common = {
         app: PATHS.app
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.ts', '.tsx']
     },
     output: {
         path: PATHS.build,
@@ -51,6 +51,11 @@ var common = {
             {
                 test: /\.md$/,
                 loader: 'raw',
+                include: PATHS.app
+            },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
                 include: PATHS.app
             }
         ]

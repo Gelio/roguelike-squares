@@ -8,9 +8,11 @@ import { randomizeStat } from './helper-functions';
 export default class MapGenerator {
     map;
     rooms;
+    widthDifference: number;
+    heightDifference: number;
 
 
-    constructor(map) {
+    constructor(map: GameMap) {
         if(!map instanceof GameMap)
             throw 'Map passed to a map generator was not an instance of GameMap class';
 
